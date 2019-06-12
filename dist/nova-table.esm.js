@@ -8,7 +8,15 @@ var properties = {
   showTitles: true,
   title: '',
   subtitle: '',
-  footnote: ''
+  footnote: '',
+  qHyperCubeDef: {
+    qDimensions: [],
+    qMeasures: [],
+    qInitialDataFetch: [{
+      qWidth: 10,
+      qHeight: 50
+    }]
+  }
 };
 
 var data = {
