@@ -26,12 +26,14 @@ function supernova(env) {
         console.log('created', env);
       },
       mounted: function mounted(element) {
-        element.innerHTML = '<div>Hello!</div>'; // eslint-disable-line
+        this.element = element;
+        this.element.innerHTML = 'nova-table';
       },
       render: function render(_ref) {
         var layout = _ref.layout,
             context = _ref.context;
-        console.log('render', layout, context);
+        this.element.innerHTML = JSON.stringify(layout);
+        console.log('render', this, layout, context);
       },
       resize: function resize() {},
       willUnmount: function willUnmount() {},
