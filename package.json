@@ -1,0 +1,37 @@
+{
+  "name": "nova-table",
+  "version": "0.1.0",
+  "description": "",
+  "license": "MIT",
+  "author": {
+    "name": "erikwett",
+    "email": "erik.wetterberg@gmail.com"
+  },
+  "keywords": [
+    "qlik",
+    "nebula",
+    "supernova"
+  ],
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=8"
+  },
+  "main": "dist/nova-table.js",
+  "module": "dist/nova-table.esm.js",
+  "scripts": {
+    "build": "nebula build",
+    "lint": "eslint src",
+	"start": "nebula serve --enigma.port 4848",
+	"test:integration": "aw puppet --glob 'test/integration/**/*.spec.js' --chrome.headless true --mocha.timeout 15000"
+  },
+  "devDependencies": {
+    "@after-work.js/aw": "^6.0.3",
+    "@nebula.js/cli": "0.1.0-alpha.15",
+    "eslint": "^5.12.1",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.15.0",
+    "eslint-plugin-mocha": "^5.2.1"
+  }
+}
