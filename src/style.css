@@ -1,0 +1,13 @@
+.nova-table {
+    font-family: "Source Sans Pro", "Segoe UI", "Helvetica Neue", -apple-system, Arial, sans-serif;
+    height: 100%;
+    overflow: auto;
+}
+
+.nova-table table td,
+.nova-table table th {
+    text-align: left;
+}
+.nova-table table td.numeric {
+    text-align: right;
+}

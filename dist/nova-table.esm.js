@@ -23,6 +23,38 @@ var data = {
   targets: []
 };
 
+function styleInject(css, ref) {
+  if (ref === void 0) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') {
+    return;
+  }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css = ".nova-table {\r\n    font-family: \"Source Sans Pro\", \"Segoe UI\", \"Helvetica Neue\", -apple-system, Arial, sans-serif;\r\n    height: 100%;\r\n    overflow: auto;\r\n}\r\n\r\n.nova-table table td,\r\n.nova-table table th {\r\n    text-align: left;\r\n}\r\n.nova-table table td.numeric {\r\n    text-align: right;\r\n}";
+styleInject(css);
+
 function supernova(env) {
   return {
     qae: {
@@ -41,7 +73,7 @@ function supernova(env) {
         var layout = _ref.layout,
             context = _ref.context;
         var hypercube = layout.qHyperCube;
-        var html = '<table><thead><tr>';
+        var html = '<div class="nova-table"><table><thead><tr>';
         html += hypercube.qDimensionInfo.map(function (d) {
           return "<th>".concat(d.qFallbackTitle, "</th>");
         }).join('');
@@ -51,10 +83,10 @@ function supernova(env) {
         html += '</tr></thead><tbody>';
         html += hypercube.qDataPages[0].qMatrix.map(function (row) {
           return "<tr>".concat(row.map(function (cell) {
-            return "<td>".concat(cell.qText, "</td>");
+            return "<td".concat(cell.qNum === 'NaN' ? '' : ' class="numeric"', ">").concat(cell.qText, "</td>");
           }).join(''), "</tr>");
         }).join('');
-        html += '</tbody></table>';
+        html += '</tbody></table></div>';
         this.element.innerHTML = html;
       },
       resize: function resize() {},

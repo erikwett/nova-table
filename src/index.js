@@ -1,5 +1,6 @@
 import properties from './object-properties';
 import data from './data';
+import './style.css';
 
 export default function supernova(env) {
   return {
@@ -20,12 +21,12 @@ export default function supernova(env) {
         context,
       }) {
         const hypercube = layout.qHyperCube;
-        let html = '<table><thead><tr>';
+        let html = '<div class="nova-table"><table><thead><tr>';
         html += hypercube.qDimensionInfo.map(d => `<th>${d.qFallbackTitle}</th>`).join('');
         html += hypercube.qMeasureInfo.map(m => `<th>${m.qFallbackTitle}</th>`).join('');
         html += '</tr></thead><tbody>';
-        html += hypercube.qDataPages[0].qMatrix.map(row => `<tr>${row.map(cell => `<td>${cell.qText}</td>`).join('')}</tr>`).join('');
-        html += '</tbody></table>';
+        html += hypercube.qDataPages[0].qMatrix.map(row => `<tr>${row.map(cell => `<td${cell.qNum === 'NaN' ? '' : ' class="numeric"'}>${cell.qText}</td>`).join('')}</tr>`).join('');
+        html += '</tbody></table></div>';
         this.element.innerHTML = html;
       },
       resize() {},
