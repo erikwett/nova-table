@@ -40,8 +40,22 @@ function supernova(env) {
       render: function render(_ref) {
         var layout = _ref.layout,
             context = _ref.context;
-        this.element.innerHTML = JSON.stringify(layout);
-        console.log('render', this, layout, context);
+        var hypercube = layout.qHyperCube;
+        var html = '<table><thead><tr>';
+        html += hypercube.qDimensionInfo.map(function (d) {
+          return "<th>".concat(d.qFallbackTitle, "</th>");
+        }).join('');
+        html += hypercube.qMeasureInfo.map(function (m) {
+          return "<th>".concat(m.qFallbackTitle, "</th>");
+        }).join('');
+        html += '</tr></thead><tbody>';
+        html += hypercube.qDataPages[0].qMatrix.map(function (row) {
+          return "<tr>".concat(row.map(function (cell) {
+            return "<td>".concat(cell.qText, "</td>");
+          }).join(''), "</tr>");
+        }).join('');
+        html += '</tbody></table>';
+        this.element.innerHTML = html;
       },
       resize: function resize() {},
       willUnmount: function willUnmount() {},
