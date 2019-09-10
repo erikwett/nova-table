@@ -1,0 +1,11 @@
+{
+  "name": "Nebula table",
+  "description": "Nebula test table wrapped in a Qlik Sense extension",
+  "author": {
+    "name": "erikwett",
+    "email": "erik.wetterberg@gmail.com"
+  },
+  "version": "0.1.0",
+  "icon": "table",
+  "type": "visualization"
+}
